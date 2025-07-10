@@ -18,30 +18,33 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
 def file_processing(file_path):
-    #load the PDF file
+    # Load the PDF file
     loader = PyPDFLoader(file_path)
     data = loader.load()
     questions = ""
     for page in data:
         questions += page.page_content
 
-    # Split the text into chunks
+    # Split the text into question-generation chunks
     splitter_gen_ques = TokenTextSplitter(
         chunk_size=10000,
-          chunk_overlap=200
-          )
+        chunk_overlap=200
+    )
     
     chunks_ques_gen = splitter_gen_ques.split_text(questions)
+    document_ques_gen = [Document(page_content=chunk) for chunk in chunks_ques_gen]
 
-    document_ques_gen= [Document(page_content=chunk) for chunk in chunks_ques_gen]
-
-    splitter_ans_gen= TokenTextSplitter(
+    # Split the text into answer-generation chunks
+    splitter_ans_gen = TokenTextSplitter(
         chunk_size=1000,
         chunk_overlap=200
     )
-    document_ans_gen = splitter_ans_gen.split_documents(document_ans_gen)
+    
+    # FIXED: use document_ques_gen or original data for answer splitting
+    document_ans_gen = splitter_ans_gen.split_documents(document_ques_gen)
 
-    return  document_ques_gen, document_ans_gen
+    return document_ques_gen, document_ans_gen
+
 
 
 

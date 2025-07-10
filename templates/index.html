@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QA Creator</title>
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <style>
@@ -19,10 +20,10 @@
 </head>
 <body class="bg-dark">
     <section>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="cl-sm-12 text-center p-5 text-white">
-                    <h3 class="bg-brown">Interview Question Creator</h3>
+                <div class="cl-sm-12 text-center mt-5 text-white">
+                    <h3 class="bg-primary p-3 rounded">Question & Answer Creator</h3>
                 </div>
             </div>
 
@@ -32,9 +33,9 @@
         <div class="container">
             <div class="row">
                 <div class="cl-sm-12">
-                    <div class="card p-5 shadow border-0 m-3">
+                    <div class="card p-5 shadow border-0 ">
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Upload your PDF file here</label>
+                            <label for="exampleFormControlInput1" class="form-label ">Upload your PDF file here</label>
                             <div class="input-group mb-3">
                                 <input type="file" class="form-control" id="pdf-file">
                                 <label class="input-group-text" for="pdf-file">Max No. of Pages is 5</label>
@@ -94,7 +95,7 @@
                 let response = await fetch('/upload', {
                     method: "POST",
                     body: formData                
-                });                
+                });              
                 processUploadResponse(response);  
             });
         });
@@ -141,7 +142,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops!!!',
-                        text: "There is a "+response.status+" error. Please contact admin for support.",
+                        text: "There is a "+response.status+" error. Please contact admin for support.1",
                         confirmButtonColor: "#15011d"
                     }).then(function() {
                         window.location.reload();
@@ -171,7 +172,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops!!!',
-                        text: "There is a "+response.status+" error. Please contact admin for support.",
+                        text: "There is a "+response.status+" error. Please contact admin for support.2",
                         confirmButtonColor: "#15011d"
                     }).then(function() {
                         window.location.reload();
@@ -183,3 +184,4 @@
     </script>
 </body>
 </html>
+   <!-- detail	"Server error: local variable 'document_ans_gen' referenced before assignment" -->
